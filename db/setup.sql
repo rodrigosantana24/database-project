@@ -1,0 +1,22 @@
+-- ========================================================================
+-- SCRIPT DE CRIAÇÃO DO BANCO DE DADOS "programacoes_filmes"
+-- 
+-- Este arquivo contém todos os comandos necessários para criar a estrutura
+-- do banco de dados (tabelas, chaves primárias e estrangeiras) e popular 
+-- com os dados iniciais utilizados na aplicação.
+--
+-- IMPORTANTE:
+-- 1. Para executar este script, é necessário ter o MySQL ou MariaDB instalado.
+-- 2. A execução deve ser feita em um cliente MySQL, como o MySQL Workbench 
+--    ou via terminal com o comando:
+-- 
+--      mysql -u SEU_USUARIO -p < setup.sql
+--
+-- 3. Esse script irá:
+--    - Criar o banco de dados `programacoes_filmes` (se ainda não existir)
+--    - Criar as tabelas: filme, canal, elenco, exibicao
+--    - Inserir dados de exemplo em cada tabela
+--
+-- Dica: certifique-se de que o banco não existe previamente para evitar
+-- conflitos, ou adapte os comandos conforme necessário.
+-- ========================================================================

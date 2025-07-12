@@ -1,0 +1,1 @@
+# caso seja necessario funcoes utilitarias e helpers adicionar aqui
