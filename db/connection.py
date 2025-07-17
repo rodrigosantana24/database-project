@@ -3,14 +3,22 @@ from mysql.connector import Error
 
 def conectar():
     try:
-        conexao = mysql.connector.connect(
+        conectar = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='',
+            password='senha',
             database='programacoes_filmes'
         )
-        if conexao.is_connected():
-            return conexao
+        if conectar.is_connected():
+            return conectar
     except Error as e:
         print(f"Erro ao conectar ao MySQL: {e}")
         return None
+
+if __name__ == "__main__":
+    conectar = conectar()
+    if conectar:
+        print("Conexão estabelecida com sucesso!")
+        conectar.close()
+    else:
+        print("Falha na conexão.")

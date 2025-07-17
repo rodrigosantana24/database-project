@@ -6,7 +6,7 @@
 -- com os dados iniciais utilizados na aplicação.
 --
 -- IMPORTANTE:
--- 1. Para executar este script, é necessário ter o MySQL ou MariaDB instalado.
+-- 1. Para executar este script, é necessário ter o MySQL instalado.
 -- 2. A execução deve ser feita em um cliente MySQL, como o MySQL Workbench 
 --    ou via terminal com o comando:
 -- 
