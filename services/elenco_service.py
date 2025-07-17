@@ -3,7 +3,7 @@ import streamlit as st
 from db.connection import conectar
 from mysql.connector import Error
 
-def get_all_elencos():
+def read_elenco():
     conexao = conectar()
     if conexao:
         try:
@@ -38,7 +38,6 @@ def check_filme_exists(num_filme):
     return False
 
 def create_elenco(num_filme, nome_ator_atriz, protagonista):
-    # RESTRIÇÃO (NOT NULL)
     if not nome_ator_atriz or not nome_ator_atriz.strip():
         return False, "O nome do ator/atriz é obrigatório."
         
@@ -49,11 +48,9 @@ def create_elenco(num_filme, nome_ator_atriz, protagonista):
     try:
         cursor = conexao.cursor()
         
-        # RESTRIÇÃO (FOREIGN KEY):
         if not check_filme_exists(num_filme):
             return False, f"O filme com número '{num_filme}' não foi encontrado."
 
-        # RESTRIÇÃO (PRIMARY KEY COMPOSTA)
         query_check = "SELECT COUNT(*) FROM elenco WHERE num_filme = %s AND nome_ator_atriz = %s"
         cursor.execute(query_check, (num_filme, nome_ator_atriz))
         if cursor.fetchone()[0] > 0:

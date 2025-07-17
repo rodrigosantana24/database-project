@@ -1,4 +1,5 @@
 services/__pycache__
 db/__pycache__
+utils/__pycache__
 venv/
 .env/

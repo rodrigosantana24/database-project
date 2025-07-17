@@ -17,7 +17,7 @@ if st.session_state.get("user_message"):
     else:
         st.error(text)
     st.session_state.user_message = None
-    time.sleep(3) # Pausa para o usuário ler a mensagem
+    time.sleep(3) 
     st.rerun()
 
 with st.expander("➕ Adicionar Novo Ator/Atriz ao Elenco", expanded=True):
@@ -44,7 +44,7 @@ with st.expander("➕ Adicionar Novo Ator/Atriz ao Elenco", expanded=True):
                 st.rerun()
 
 st.header("🎬 Elenco Cadastrado")
-elenco_df = elenco_service.get_all_elencos()
+elenco_df = elenco_service.read_elenco()
 
 if elenco_df.empty:
     st.info("Nenhum registro de elenco encontrado.")

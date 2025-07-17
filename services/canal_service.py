@@ -36,7 +36,6 @@ def create_canal(num_canal, nome):
                 conexao.close()
     return False, "Falha na conexão com o banco de dados."
 
-# --- FUNÇÃO MODIFICADA/ADICIONADA ---
 def update_canal(num_canal_antigo, num_canal_novo, nome_novo):
     conexao = conectar()
     if conexao:
