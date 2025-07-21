@@ -155,4 +155,29 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Trigger para validar que o ano de lançamento do filme não é futuro (INSERT)
+DELIMITER $$
+CREATE TRIGGER trg_validar_ano_filme_insert
+BEFORE INSERT ON filme
+FOR EACH ROW
+BEGIN
+    IF NEW.ano > YEAR(CURDATE()) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'O ano de lançamento do filme não pode ser futuro.';
+    END IF;
+END$$
+DELIMITER ;
+
+-- Trigger para validar que o ano de lançamento do filme não é futuro (UPDATE)
+DELIMITER $$
+CREATE TRIGGER trg_validar_ano_filme_update
+BEFORE UPDATE ON filme
+FOR EACH ROW
+BEGIN
+    IF NEW.ano > YEAR(CURDATE()) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'O ano de lançamento do filme não pode ser futuro.';
+    END IF;
+END$$
+DELIMITER ;
+
+
 -- Dump completed on 2025-07-11 21:42:17
