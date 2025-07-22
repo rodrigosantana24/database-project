@@ -61,7 +61,7 @@ CREATE TABLE `canal` (
 
 LOCK TABLES `canal` WRITE;
 /*!40000 ALTER TABLE `canal` DISABLE KEYS */;
-INSERT INTO `canal` VALUES (111,'AXN'),(222,'HBO'),(333,'Cinemax'),(444,'TNT');
+INSERT INTO `canal` VALUES (111,'AXN'),(222,'HBO'),(333,'Cinemax'),(444,'TNT'),(555,'Warner Channel'),(666,'Telecine Premium');
 /*!40000 ALTER TABLE `canal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `elenco` (
 
 LOCK TABLES `elenco` WRITE;
 /*!40000 ALTER TABLE `elenco` DISABLE KEYS */;
-INSERT INTO `elenco` VALUES (90001,'Sam Worthington',1),(90001,'Sigourney Weaver',0),(90001,'Zoe Saldaña',1),(90002,'Kate Winslet',1),(90002,'Leonardo DiCaprio',1),(90003,'Carrie Fisher',1),(90003,'Harrison Ford',1),(90003,'Mark Hamill',1),(90004,'Chris Evans',1),(90004,'Josh Brolin',0),(90004,'Robert Downey Jr.',1),(90004,'Scarlett Johansson',1);
+INSERT INTO `elenco` VALUES (90001,'Sam Worthington',1),(90001,'Sigourney Weaver',0),(90001,'Zoe Saldaña',1),(90002,'Kate Winslet',1),(90002,'Leonardo DiCaprio',1),(90003,'Carrie Fisher',1),(90003,'Harrison Ford',1),(90003,'Mark Hamill',1),(90004,'Chris Evans',1),(90004,'Josh Brolin',0),(90004,'Robert Downey Jr.',1),(90004,'Scarlett Johansson',1),(90004,'Zoe Saldaña',0),(90006,'Marlon Brando',1),(90006,'Al Pacino',1),(90007,'Christian Bale',1),(90007,'Heath Ledger',0),(90010,'Elijah Wood',1),(90010,'Viggo Mortensen',1),(90011,'Tom Hanks',1),(90012,'Leonardo DiCaprio',1),(90012,'Joseph Gordon-Levitt',0),(90012,'Tom Hardy',0),(90013,'Keanu Reeves',1),(90013,'Laurence Fishburne',0),(90018,'Tom Hanks',1),(90020,'Song Kang-ho',1),(90033,'Tom Hardy',1),(90033,'Charlize Theron',1),(90036,'Harrison Ford',0);
 /*!40000 ALTER TABLE `elenco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `exibicao` (
 
 LOCK TABLES `exibicao` WRITE;
 /*!40000 ALTER TABLE `exibicao` DISABLE KEYS */;
-INSERT INTO `exibicao` VALUES (90001,222,'2025-06-27','14:00:00'),(90002,333,'2025-06-28','09:30:00'),(90002,333,'2025-06-28','20:30:00'),(90003,111,'2025-06-27','19:45:00'),(90005,222,'2025-08-03','16:20:00'),(90005,333,'2025-08-03','16:20:00');
+INSERT INTO `exibicao` VALUES (90001,222,'2025-06-27','14:00:00'),(90002,333,'2025-06-28','09:30:00'),(90002,333,'2025-06-28','20:30:00'),(90003,111,'2025-06-27','19:45:00'),(90005,222,'2025-08-03','16:20:00'),(90005,333,'2025-08-03','16:20:00'),(90004,444,'2025-07-25','22:00:00'),(90007,666,'2025-07-26','21:00:00'),(90011,555,'2025-07-27','18:00:00'),(90013,111,'2025-07-28','23:30:00'),(90021,444,'2025-07-29','20:15:00'),(90033,222,'2025-07-30','22:00:00'),(90040,333,'2025-08-01','19:00:00'),(90050,666,'2025-08-02','00:00:00'),(90001,444,'2025-08-05','17:30:00'),(90002,555,'2025-08-08','21:45:00'),(90004,222,'2025-08-10','14:10:00'),(90006,666,'2025-08-12','22:00:00'),(90015,111,'2025-08-15','23:00:00'),(90023,555,'2025-08-17','16:00:00'),(90024,333,'2025-08-20','13:00:00'),(90028,222,'2025-08-22','11:00:00'),(90038,666,'2025-08-25','22:00:00'),(90042,111,'2025-08-28','23:15:00'),(90044,444,'2025-09-01','20:00:00'),(90017,222,'2025-09-05','22:30:00'),(90019,666,'2025-09-07','19:45:00'),(90027,111,'2025-09-10','01:00:00'),(90034,555,'2025-09-12','18:30:00'),(90045,444,'2025-09-15','22:00:00');
 /*!40000 ALTER TABLE `exibicao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `filme` (
 
 LOCK TABLES `filme` WRITE;
 /*!40000 ALTER TABLE `filme` DISABLE KEYS */;
-INSERT INTO `filme` VALUES (90001,'Avatar',2022,162),(90002,'Titanic',1997,194),(90003,'Star Wars',2019,NULL),(90004,'Vingadores Ultimato',2019,180),(90005,'Lilo & Stitch',2025,108);
+INSERT INTO `filme` VALUES (90001,'Avatar',2022,162),(90002,'Titanic',1997,194),(90003,'Star Wars',2019,NULL),(90004,'Vingadores Ultimato',2019,180),(90005,'Lilo & Stitch',2025,108),(90006,'O Poderoso Chefão',1972,175),(90007,'Batman: O Cavaleiro das Trevas',2008,152),(90008,'Pulp Fiction',1994,154),(90009,'A Lista de Schindler',1993,195),(90010,'O Senhor dos Anéis: O Retorno do Rei',2003,201),(90011,'Forrest Gump',1994,142),(90012,'A Origem',2010,148),(90013,'Matrix',1999,136),(90014,'Os Bons Companheiros',1990,146),(90015,'O Silêncio dos Inocentes',1991,118),(90016,'Cidade de Deus',2002,130),(90017,'Gladiador',2000,155),(90018,'O Resgate do Soldado Ryan',1998,169),(90019,'Interestelar',2014,169),(90020,'Parasita',2019,132),(90021,'Jurassic Park',1993,127),(90022,'A Viagem de Chihiro',2001,125),(90023,'O Rei Leão',1994,88),(90024,'De Volta para o Futuro',1985,116),(90025,'Psicose',1960,109),(90026,'O Iluminado',1980,146),(90027,'Clube da Luta',1999,139),(90028,'Toy Story',1995,81),(90029,'WALL-E',2008,98),(90030,'Up - Altas Aventuras',2009,96),(90031,'Divertida Mente',2015,95),(90032,'Coco',2017,105),(90033,'Mad Max: Estrada da Fúria',2015,120),(90034,'Homem-Aranha: No Aranhaverso',2018,117),(90035,'Coringa',2019,122),(90036,'Blade Runner 2049',2017,163),(90037,'A Chegada',2016,116),(90038,'Duna',2021,155),(90039,'O Grande Hotel Budapeste',2014,99),(90040,'La La Land',2016,128),(90041,'Whiplash',2014,107),(90042,'O Lobo de Wall Street',2013,180),(90043,'Django Livre',2012,165),(90044,'Bastardos Inglórios',2009,153),(90045,'Kill Bill: Volume 1',2003,111),(90046,'O Fabuloso Destino de Amélie Poulain',2001,122),(90047,'E o Vento Levou',1939,238),(90048,'Casablanca',1942,102),(90049,'Cidadão Kane',1941,119),(90050,'2001: Uma Odisseia no Espaço',1968,149);
 /*!40000 ALTER TABLE `filme` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
