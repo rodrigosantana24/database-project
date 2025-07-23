@@ -3,16 +3,20 @@ import pandas as pd
 import time
 from services import filme_service 
 
+# Configuração da página
 st.set_page_config(page_title="Gerenciar Filmes", layout="wide")
 st.title("🎬 Gerenciamento de Filmes")
 
+# Inicialização do session_state
 if "user_message" not in st.session_state:
     st.session_state.user_message = None
 if "editing_id" not in st.session_state:
     st.session_state.editing_id = None
+# A chave "deleting_id" não é mais necessária para a confirmação, mas mantê-la como None não causa problemas.
 if "deleting_id" not in st.session_state:
     st.session_state.deleting_id = None
 
+# Exibir mensagens de sucesso ou erro e limpar após 3 segundos
 if st.session_state.get("user_message"):
     success, message = st.session_state.user_message
     if success:
@@ -23,6 +27,7 @@ if st.session_state.get("user_message"):
     time.sleep(3)
     st.rerun()
 
+# Formulário para adicionar novo filme
 with st.expander("➕ Adicionar Novo Filme", expanded=True):
     with st.form("new_filme_form", clear_on_submit=True):
         st.subheader("Dados do Novo Filme")
@@ -47,12 +52,14 @@ with st.expander("➕ Adicionar Novo Filme", expanded=True):
                 st.session_state.user_message = (success, message)
                 st.rerun()
 
+# Listagem de filmes cadastrados
 st.header("Lista de Filmes Cadastrados")
 filmes_df = filme_service.read_filmes()
 
 if filmes_df.empty:
     st.info("Nenhum filme cadastrado ainda.")
 else:
+    # Cabeçalho da lista
     col1, col2, col3, col4, col5 = st.columns([1.5, 4, 1.5, 1.5, 2])
     with col1: st.write("**Nº Filme**")
     with col2: st.write("**Nome**")
@@ -61,10 +68,12 @@ else:
     with col5: st.write("**Ações**")
     st.markdown("<hr style='margin-top: 0; margin-bottom: 1rem;'>", unsafe_allow_html=True)
 
+    # Itera sobre os filmes para exibi-los
     for _, filme in filmes_df.iterrows():
         is_editing = st.session_state.get("editing_id") == filme['num_filme']
         
         if is_editing:
+            # Formulário de edição (quando o modo de edição está ativo)
             with st.form(f"edit_form_{filme['num_filme']}"):
                 c1, c2, c3, c4, c5 = st.columns([1.5, 4, 1.5, 1.5, 2])
                 
@@ -99,6 +108,7 @@ else:
                         st.session_state.editing_id = None
                         st.rerun()
         else:
+            # Exibição normal do filme na lista
             c1, c2, c3, c4, c5 = st.columns([1.5, 4, 1.5, 1.5, 2])
             with c1: st.write(filme['num_filme'])
             with c2: st.write(filme['nome'])
@@ -110,28 +120,15 @@ else:
                 col_edit, col_delete = st.columns(2)
                 if col_edit.button("Editar", key=f"edit_{filme['num_filme']}", use_container_width=True):
                     st.session_state.editing_id = filme['num_filme']
-                    st.session_state.deleting_id = None
-                    st.rerun()
-                if col_delete.button("Remover", key=f"del_{filme['num_filme']}", use_container_width=True):
-                    st.session_state.deleting_id = filme['num_filme']
-                    st.session_state.editing_id = None
+                    st.session_state.deleting_id = None # Garante que o outro estado seja limpo
                     st.rerun()
 
-if st.session_state.get("deleting_id"):
-    filme_id_to_delete = st.session_state.deleting_id
-    
-    with st.container(border=True):
-        st.warning(f"**Você tem certeza que deseja excluir o filme Nº {filme_id_to_delete}?**")
-        st.info("Atenção: Todos os registros de elenco e exibição associados a este filme também serão permanentemente removidos.")
-        
-        btn_col1, btn_col2, _ = st.columns([1.5, 1, 4])
-        with btn_col1:
-            if st.button("Confirmar Exclusão", type="primary", use_container_width=True):
-                success, message = filme_service.delete_filme(filme_id_to_delete)
-                st.session_state.user_message = (success, message)
-                st.session_state.deleting_id = None
-                st.rerun()
-        with btn_col2:
-            if st.button("Cancelar", use_container_width=True):
-                st.session_state.deleting_id = None
-                st.rerun()
+                # --- ALTERAÇÃO PRINCIPAL AQUI ---
+                # A exclusão agora é feita diretamente, sem confirmação.
+                if col_delete.button("Remover", key=f"del_{filme['num_filme']}", use_container_width=True):
+                    success, message = filme_service.delete_filme(filme['num_filme'])
+                    st.session_state.user_message = (success, message)
+                    st.session_state.editing_id = None # Limpa o estado de edição por segurança
+                    st.session_state.deleting_id = None # Limpa o estado de exclusão
+                    st.rerun()
+
