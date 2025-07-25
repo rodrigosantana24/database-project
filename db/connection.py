@@ -1,24 +1,24 @@
 import mysql.connector
-from mysql.connector import Error
+import os 
+import time
 
-def conectar():
-    try:
-        conectar = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='',
-            database='programacoes_filmes'
-        )
-        if conectar.is_connected():
-            return conectar
-    except Error as e:
-        print(f"Erro ao conectar ao MySQL: {e}")
-        return None
+def create_connection():
+    for i in range(10):
+        try:
+            connection = mysql.connector.connect(
+                # Variáveis de ambiente
+                host=os.getenv("DB_HOST", "localhost"),
+                user=os.getenv("DB_USER", "root"),
+                password=os.getenv("DB_PASSWORD"),
+                database=os.getenv("DB_NAME")
+            )
+            print("Conexão com o banco de dados bem-sucedida!")
+            return connection
+        except mysql.connector.Error as err:
+            print(f"Erro ao conectar ao MySQL: {err}. Tentando novamente em 5 segundos...")
+            time.sleep(5) 
+    
+    print("Não foi possível conectar ao banco de dados após várias tentativas.")
+    return None
 
-if __name__ == "__main__":
-    conectar = conectar()
-    if conectar:
-        print("Conexão estabelecida com sucesso!")
-        conectar.close()
-    else:
-        print("Falha na conexão.")
+

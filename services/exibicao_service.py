@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import datetime
-from db.connection import conectar
+from db.connection import create_connection
 from mysql.connector import Error
 
 def _filme_existe(cursor, num_filme):
@@ -62,7 +62,7 @@ def _verificar_conflito_de_horario(cursor, num_filme_novo, num_canal, data, hora
 
 def read_exibicoes():
     try:
-        conexao = conectar()
+        conexao = create_connection()
         if not conexao:
             st.error("Falha na conexão com o banco de dados.")
             return pd.DataFrame()
@@ -83,7 +83,7 @@ def read_exibicoes():
 def create_exibicao(num_filme, num_canal, data, hora):
     conexao = None
     try:
-        conexao = conectar()
+        conexao = create_connection()
         if not conexao: return False, "Falha na conexão com o banco de dados."
 
         with conexao.cursor() as cursor:
@@ -111,7 +111,7 @@ def update_exibicao(old_num_filme, old_num_canal, old_data, old_hora,
                     new_num_filme, new_num_canal, new_data, new_hora):
     conexao = None
     try:
-        conexao = conectar()
+        conexao = create_connection()
         if not conexao: return False, "Falha na conexão com o banco de dados."
 
         with conexao.cursor() as cursor:
@@ -152,7 +152,7 @@ def delete_exibicao(num_filme, num_canal, data, hora):
     """Deleta uma exibição do banco de dados."""
     conexao = None
     try:
-        conexao = conectar()
+        conexao = create_connection()
         if not conexao: return False, "Falha na conexão com o banco de dados."
 
         with conexao.cursor() as cursor:
