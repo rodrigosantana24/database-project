@@ -48,33 +48,43 @@ Graças ao Docker, você não precisa instalar Python ou MySQL na sua máquina. 
 
 **1. Clone o Repositório**
 ```bash
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-cd seu-repositorio
+git clone https://github.com/Luanv02/projeto-iaad.git
+cd projeto-iaad
 ```
 **2. Inicie a Aplicação com Docker Compose**
 Com o Docker Desktop rodando, execute o seguinte comando na pasta raiz do projeto. Ele irá construir as imagens, criar os contêineres e iniciar tudo em modo de "watch", que atualiza a aplicação em tempo real conforme você edita o código.
 ```bash
 docker compose up --watch
 ```
+⚠️ Se não quiser o modo watch (recarregamento automático), use:
+```bash
+ docker compose up
+```
 **3. Acesse os Serviços**
 Após a inicialização, os seguintes serviços estarão disponíveis no seu navegador:
 
-🖥️ Aplicação Streamlit: http://localhost:8501
+| Serviço             | URL                                            |
+| ------------------- | ---------------------------------------------- |
+| Aplicação Streamlit | [http://localhost:8501](http://localhost:8501) |
+| Adminer (BD Web UI) | [http://localhost:8081](http://localhost:8081) |
 
-🗃️ Gerenciador de Banco de Dados (Adminer): http://localhost:8081
 ```bash
 Preencha os dados para login:
 Sistema: MySQL
 Servidor: db
 Usuário: root
-Senha: A senha que você colocou no arquivo .env
+Senha: 123456 (Definido no compose)
 Base de dados: programacoes_filmes
 ```
 
-**Parando a Aplicação**
+**🛑 Como Parar e Remover os Contêineres**
 Para parar e remover todos os contêineres e redes criadas pelo projeto, execute:
 ```bash
 docker compose down
+```
+Para remover também os volumes (dados do banco), execute:
+```bash
+docker compose down -v
 ```
 
 
