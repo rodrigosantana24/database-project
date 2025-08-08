@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
-from db.connection import conectar
+from db.connection import create_connection
 from mysql.connector import Error
 
 def read_canais():
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             query = "SELECT num_canal, nome FROM canal ORDER BY num_canal"
@@ -17,7 +17,7 @@ def read_canais():
     return pd.DataFrame()
 
 def create_canal(num_canal, nome):
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             cursor = conexao.cursor()
@@ -37,7 +37,7 @@ def create_canal(num_canal, nome):
     return False, "Falha na conexão com o banco de dados."
 
 def update_canal(num_canal_antigo, num_canal_novo, nome_novo):
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             cursor = conexao.cursor()
@@ -66,7 +66,7 @@ def update_canal(num_canal_antigo, num_canal_novo, nome_novo):
     return False, "Falha na conexão com o banco de dados."
 
 def delete_canal(num_canal):
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             cursor = conexao.cursor()

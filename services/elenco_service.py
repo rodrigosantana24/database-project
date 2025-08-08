@@ -1,10 +1,10 @@
 import pandas as pd
 import streamlit as st
-from db.connection import conectar
+from db.connection import create_connection
 from mysql.connector import Error
 
 def read_elenco():
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             query = "SELECT num_filme, nome_ator_atriz, protagonista FROM elenco ORDER BY num_filme, nome_ator_atriz"
@@ -19,7 +19,7 @@ def read_elenco():
     return pd.DataFrame()
 
 def check_filme_exists(num_filme):
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             cursor = conexao.cursor()
@@ -41,7 +41,7 @@ def create_elenco(num_filme, nome_ator_atriz, protagonista):
     if not nome_ator_atriz or not nome_ator_atriz.strip():
         return False, "O nome do ator/atriz é obrigatório."
         
-    conexao = conectar()
+    conexao = create_connection()
     if not conexao:
         return False, "Falha na conexão com o banco de dados."
     
@@ -75,7 +75,7 @@ def update_elenco(old_num_filme, old_nome_ator, new_num_filme, new_nome_ator, ne
     if not new_nome_ator or not new_nome_ator.strip():
         return False, "O nome do ator/atriz é obrigatório."
 
-    conexao = conectar()
+    conexao = create_connection()
     if not conexao:
         return False, "Falha na conexão com o banco de dados."
     
@@ -111,7 +111,7 @@ def update_elenco(old_num_filme, old_nome_ator, new_num_filme, new_nome_ator, ne
             conexao.close()
 
 def delete_elenco(num_filme, nome_ator_atriz):
-    conexao = conectar()
+    conexao = create_connection()
     if not conexao:
         return False, "Falha na conexão com o banco de dados."
     try:

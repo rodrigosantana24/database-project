@@ -1,10 +1,10 @@
 import pandas as pd
 import streamlit as st
-from db.connection import conectar
+from db.connection import create_connection
 from mysql.connector import Error
 
 def read_filmes():
-    conexao = conectar()
+    conexao = create_connection()
     if conexao:
         try:
             query = "SELECT num_filme, nome, ano, duracao FROM filme ORDER BY num_filme"
@@ -23,7 +23,7 @@ def create_filme(num_filme, nome, ano, duracao):
     if num_filme is None:
         return False, "O número do filme é um campo obrigatório."
 
-    conexao = conectar()
+    conexao = create_connection()
     if not conexao:
         return False, "Falha na conexão com o banco de dados."
         
@@ -57,7 +57,7 @@ def update_filme(old_num_filme, new_num_filme, new_nome, new_ano, new_duracao):
     if not new_nome or not new_nome.strip():
         return False, "O nome do filme não pode ser vazio."
 
-    conexao = conectar()
+    conexao = create_connection()
     if not conexao:
         return False, "Falha na conexão com o banco de dados."
         
@@ -91,7 +91,7 @@ def update_filme(old_num_filme, new_num_filme, new_nome, new_ano, new_duracao):
             conexao.close()
 
 def delete_filme(num_filme):
-    conexao = conectar()
+    conexao = create_connection()
     if not conexao:
         return False, "Falha na conexão com o banco de dados."
         

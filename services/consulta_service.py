@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
-from db.connection import conectar
+from db.connection import create_connection
 
 
 def filmes_por_ator(nome_atores):
-    conn = conectar()
+    conn = create_connection()
     if not conn or not nome_atores:
         return pd.DataFrame()
     placeholders = ','.join(['%s'] * len(nome_atores))
@@ -22,7 +22,7 @@ def filmes_por_ator(nome_atores):
 
 
 def filmes_em_exibicao(filmes, data_inicio, data_fim):
-    conn = conectar()
+    conn = create_connection()
     if not conn:
         return pd.DataFrame()
     placeholders = ','.join(['%s'] * len(filmes))
@@ -45,7 +45,7 @@ def filmes_em_exibicao(filmes, data_inicio, data_fim):
 
 
 def get_filmes_disponiveis():
-    conn = conectar()
+    conn = create_connection()
     if not conn:
         return []
     query = "SELECT nome FROM filme"
@@ -58,7 +58,7 @@ def get_filmes_disponiveis():
 
 
 def get_atores_disponiveis():
-    conn = conectar()
+    conn = create_connection()
     if not conn:
         return []
     query = "SELECT DISTINCT nome_ator_atriz FROM elenco"
@@ -71,7 +71,7 @@ def get_atores_disponiveis():
 
 
 def get_limites_datas_exibicao():
-    conn = conectar()
+    conn = create_connection()
     if not conn:
         return None, None
     query = "SELECT MIN(e.data_exibicao), MAX(e.data_exibicao) FROM exibicao AS e"
