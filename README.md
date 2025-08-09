@@ -35,6 +35,16 @@ Um projeto de aplicação web para gerenciar um catálogo de filmes e seus elenc
 ├── Dockerfile             
 └── requirements.txt 
 ```
+## 👨‍💻 Desenvolvedores
+
+| Nome                | E-mail                     |
+|---------------------|-----------------------------|
+| Gabriel Vinícius     | gabrielvto18@gmail.com   |
+| Luan Vinícius     | limaluan32104@gmail.com   |
+| Rodrigo Santana     | rodrigosantana.dev@gmail.com   |
+| Victor de Souza     | victorsouza183@gmail.com   |
+| Thalyson Kauan    | thalyson.kauan7@gmail.com |
+
 
 ## 🚀 Como Executar o Projeto
 
