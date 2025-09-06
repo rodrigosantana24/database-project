@@ -1,4 +1,4 @@
-# 🎬 Gerenciador de Filmes com Streamlit e Docker
+# 🎬 Gerenciador de Filmes - Bancos de Dados MYSQL e Firebase
 ![Python Version](https://img.shields.io/badge/python-3.11-blue)
 ![Docker](https://img.shields.io/badge/docker-compose-blue.svg)
 
