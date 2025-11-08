@@ -1,5 +1,50 @@
-services/__pycache__
-db/__pycache__
-utils/__pycache__
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.db
+
+# Virtual environment
 venv/
 .env/
+.venv/
+env/
+ENV/
+
+# Cache do Python
+*.cache/
+spark-warehouse/
+.ipynb_checkpoints/
+
+# Evita enviar dependências instaladas
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+
+# Variáveis de ambiente (credenciais do MySQL, API keys etc.)
+*.env
+.env.*
+secrets.json
+
+.pytest_cache/
+coverage/
+htmlcov/
+.coverage
+coverage.xml
+
+
+.vscode/
+
+# Configurações e cache do Streamlit
+.streamlit/*.toml
+.streamlit/secrets.toml
+.streamlit/cache/
+.streamlit/credentials.json
+
+*.log
+nohup.out
